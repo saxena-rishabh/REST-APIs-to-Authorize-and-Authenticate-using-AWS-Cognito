@@ -16,19 +16,30 @@ def lambda_handler(event, context):
     print('client ID is: ' + os.environ.get("COGNITO_USER_CLIENT_ID"))
 
     # Initiating the Authentication, 
-    response = client.initiate_auth(
+    resp = client.initiate_auth(
     ClientId=os.getenv("COGNITO_USER_CLIENT_ID"),
     AuthFlow="USER_PASSWORD_AUTH",
     AuthParameters={"USERNAME": username, "PASSWORD": password},
     )
 
     # From the JSON response you are accessing the AccessToken
-    print(response)
-    # Getting the user details.
-    access_token = response["AuthenticationResult"]["AccessToken"]
+    print("Log in success")
+    print("ACCESS TOKEN:")
+    access_token =  resp['AuthenticationResult']['AccessToken']
 
-    response = client.get_user(AccessToken=access_token)
-    print(response)
+    print(access_token)
+    print('###################################')
+
+    id_token =  resp['AuthenticationResult']['IdToken']
+
+    print('ID TOKEN:')
+    print(id_token)
+    print('##########################')
+    # Getting the user details.
+
+    user_details = client.get_user(AccessToken=access_token)
+    print('USER DETAILS USING ACCESS TOKEN:')
+    print(user_details)
 
     print('User Logged In Successfully!')
 
