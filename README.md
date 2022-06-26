@@ -1,6 +1,6 @@
 # REST APIs to Authorize and Authenticate using AWS Cognito
 
-- Created 3 APIs for user registration, user account verification and user login using AWS cognito, API Gateway and boto3
+- Created 3 APIs for user registration, user account verification and user login using AWS cognito, API Gateway, boto3 and python.
 
 - After successfull login, we are retriving the ID and Access tokens which can be used further in the work flow.
 
